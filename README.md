@@ -59,7 +59,7 @@ Two approaches were tested:
 
 To simulate real-world conditions, some dataset images were captured **with slight shifts in camera angles**. This mimics an operator accidentally moving the camera.
 
-**Image registration** was applied to **align all images** to a common reference frame, improving model consistency.
+**Image registration** was applied to **align all images** to a common reference frame, improving model consistency. It can be applied using the `image_registration.py` file, which will save the modified images in a copy of the dataset.
 
 ### 🎚️ 5. Threshold Selection (Finding the Sweet Spot)
 
@@ -80,6 +80,12 @@ To rigorously assess the models, multiple **performance metrics** were used:
 - **IoU (Intersection over Union)**
 
 ---
+
+### ⭐ Special files
+This repo also has some special files, namely:
+  - **train_all.py** 📈 - Automates training across all dataset categories for both networks, updating the .yaml file and saving results automatically.
+  - **detect_all.py** 📊 - Evaluates trained models for both networks across different techniques (masking, image registration, etc.), storing evaluation metrics, graphs, and curves. ⚠️ Be mindful of storage space!
+  - **compare_networks.py** 🏆 - Compares the two networks by analyzing their ability on finding the anomaly in the images, stores all the information in the directory `networks_comparison`.
 
 ## 🚀 Conclusion
 
