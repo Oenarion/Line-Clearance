@@ -1,0 +1,57 @@
+data:
+  name: AVDataset  #MVTec #MTD #VisA 
+  data_dir: dataset\AV_dataset_mvtec_like_aligned #MVTec #VisA #MTD  
+  category: C   # [A, A2, B, B2, C]
+  image_size: 512
+  batch_size: 1 # 32 for DDAD and 16 for DDADS
+  DA_batch_size: 2 #16 for MVTec and [macaroni2, pcb1] in VisA, and 32 for other categories in VisA
+  test_batch_size: 1 #16 for MVTec, 32 for VisA
+  mask: true
+  input_channel: 3
+  image_registration: true
+  pre_masking: false
+
+
+model:
+  DDADS: false
+  checkpoint_dir: DDAD_main/checkpoints   #MTD  #MVTec  #VisA
+  checkpoint_name: weights
+  exp_name: default
+  feature_extractor: wide_resnet101_2 #wide_resnet101_2  # wide_resnet50_2 #resnet50
+  learning_rate: 3e-4
+  weight_decay: 0.05
+  epochs: 4000
+  load_chp: 3000  # From this epoch checkpoint will be loaded. Every 250 epochs a checkpoint is saved. Try to load 750 or 1000 epochs for Visa and 1000-1500-2000 for MVTec.
+  DA_epochs: 4 # Number of epochs for Domain adaptation.
+  DA_chp: 4
+  v: 1  #7 # 1 for MVTec and cashew in VisA, and 7 for VisA (1.5 for cashew). Control parameter for pixel-wise and feature-wise comparison. v * D_p + D_f
+  w: 4  # Conditionig parameter. The higher the value, the more the model is conditioned on the target image. "Fine tuninig this parameter results in better performance".
+  w_DA: 3  #3 # Conditionig parameter for domain adaptation. The higher the value, the more the model is conditioned on the target image.
+  DLlambda: 0.1  # 0.1 for MVTec and 0.01 for VisA
+  trajectory_steps: 1000
+  test_trajectoy_steps: 250   # Starting point for denoining trajectory.
+  test_trajectoy_steps_DA: 250  # Starting point for denoining trajectory for domain adaptation.
+  skip: 25    # Number of steps to skip for denoising trajectory.
+  skip_DA: 25
+  eta: 1  # Stochasticity parameter for denoising process.
+  beta_start: 0.0001
+  beta_end: 0.02
+  device: 'cuda' #<"cpu", "gpu", "tpu", "ipu">
+  save_model: true
+  num_workers: 2
+  seed: 42
+
+
+
+metrics:
+  masking: true
+  auroc: true
+  pro: true
+  iou: true
+  pr: true
+  misclassifications: true
+  visualisation: true
+  save_txt: true
+  comparison: true
+  threshold: true  #if true uses threshold computed on nominal val data, else computes it based on the test data
+  threshold_type: 2 # 0 max_threshold, 1 p-quantile, 2 k-sigma
