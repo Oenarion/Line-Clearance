@@ -1,6 +1,6 @@
 # 📌 Anomaly Detection for Line Clearance in Industrial Systems
 
-Welcome to the **Line-Clearance** repository! 🎯 This project is the result of my thesis in **Artificial Intelligence**, where I explored the **study, creation, and potential deployment of an AI-based Line Clearance system** for industrial applications.
+Welcome to the **Line-Clearance** repository! 🎯 This project is the result of my master thesis in **Artificial Intelligence**, where I explored the **study, creation, and potential deployment of an AI-based Line Clearance system** for industrial applications.
 
 ⚠️ Note: This repository contains the core elements of my work. Preliminary and failed tests have been excluded to keep things clean and relevant.
 
@@ -82,7 +82,7 @@ To rigorously assess the models, multiple **performance metrics** were used:
 ---
 
 ### ⭐ Special files
-This repo also has some special files, namely:
+This repo also has some special files, they ease the train/evaluation of multiple networks, namely:
   - **train_all.py** 📈 - Automates training across all dataset categories for both networks, updating the .yaml file and saving results automatically.
   - **detect_all.py** 📊 - Evaluates trained models for both networks across different techniques (masking, image registration, etc.), storing evaluation metrics, graphs, and curves. ⚠️ Be mindful of storage space!
   - **compare_networks.py** 🏆 - Compares the two networks by analyzing their ability on finding the anomaly in the images, stores all the information in the directory `networks_comparison`.
