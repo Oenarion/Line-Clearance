@@ -1,0 +1,34 @@
+data:
+  data_path: dataset\AV_dataset_mvtec_like
+  anomaly_source_path: DRAEM\dtd\images
+  checkpoint_path: DRAEM\DRAEM_models
+  test_batch_size: 1 #16 for MVTec, 32 for VisA
+  run_name: "TEST"
+  img_size: 512
+  input_channel: 3
+  category: C
+  load_epoch: 3000
+  image_registration: false
+  pre_masking: true
+
+train:
+  batch_size: 1
+  learning_rate: 1e-4
+  epochs: 3000
+  visualize: true
+  cut: true
+  save_from: 2000
+
+
+metrics:
+  masking: false
+  auroc: true
+  pro: true
+  iou: true
+  pr: true
+  misclassifications: true
+  visualisation: true
+  save_txt: true
+  comparison: true
+  threshold: true  #if true uses threshold computed on nominal val data, else computes it based on the test data
+  threshold_type: 0 # 0 max_threshold, 1 p-quantile, 2 k-sigma
