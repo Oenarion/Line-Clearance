@@ -44,6 +44,7 @@ Beyond the main training and evaluation process, additional scripts were created
 - **check_best_model.py** 🏆 - Analyzes logs to determine the best-performing model based on evaluation metrics and creates a summary report.
 
 🔹 **Important:** These scripts rely on predefined parameters at the start of each file, update them as needed to suit your setup. 
+
 🔹 **Important:** The order of execution matters, as each step depends on the previous one's outputs.
 ## 📂 Dataset Structure
 This project was tested on a **custom dataset** (not included in this repository). However, it can be used with benchmark datasets like [MVTec AD](https://www.mvtec.com/company/research/datasets/mvtec-ad/) or any dataset structured as follows:
